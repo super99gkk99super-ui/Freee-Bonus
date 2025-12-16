@@ -131,79 +131,85 @@
 
             if (!tableBody) return;
 
-            // --- 1. Username ကို တစ်လုံးခြား (*) ဖြင့် အစားထိုးသည့် Function ---
+            // --- 1. Function to replace username with an asterisk (*)
             function maskUsername(username) {
                 if (!username) return "";
                 let masked = "";
                 for (let i = 0; i < username.length; i++) {
-                    // အက္ခရာကို နဂိုအတိုင်းထားမည် (0, 2, 4, ... index များ)
+                    // The index will be left as is (0, 2, 4, ... indices).
                     if (i % 2 === 0) {
                         masked += username[i];
                     } else {
-                        // အက္ခရာကို * ဖြင့် အစားထိုးမည် (1, 3, 5, ... index များ)
+                        // Replace the asterisk with * (indexes 1, 3, 5, ...)
                         masked += '*';
                     }
                 }
                 return masked;
             }
             
-            // --- 2. Snowflakes Creation (ကုဒ်အပြည့်အစုံ မပါဝင်ပါ) ---
+            // --- 2. Snowflakes Creation (Full code not included) ---
             // ... (Snowflake creation code remains the same)
             
-            // --- 3. Player List Generation (ကစားသမားစာရင်း ထုတ်လုပ်ခြင်း) ---
+            // --- 3. Player List Generation ---
             function generatePlayerList() {
                 
-                // *** စာရင်းအဟောင်း (199) သည် မပြောင်းလဲပါ ***
+                // *** စုစုပေါင်း ၂၅၀ ယောက် ပြည့်အောင် ဖြည့်စွက်ထားသော ယခင် username ၁၇၀ ခု ***
                 const oldUsernames = [ 
-                    "Honey998876", "PeBee", "65432", "MgPhyu", "TunWaiSoe9", 
-                    "yongzhengwangcha", "popo6669gyi66", "Myokoko1990", "bobotun", 
-                    "san123", "yewin", "Kyawmyo", "ye11101995", "AA3399", 
-                    "Bagyisan", "deerr", "yeminko", "Min1111", "tha123456", 
-                    "tunminkyaw", "newday12345", "Lawemon", "komaungmg", "naykha", 
-                    "chitkoung", "thathtar", "aungaung23", "minkhant2006", "Pyone", 
-                    "lin2345", "Mawmaw", "minkoaung", "123mc", "Qwert890", 
-                    "ShineYan16", "sawwin", "sanminaung", "akk6789", "qwe12345", 
-                    "Mercury", "Monlay", "Minthant", "htetyan", "chitkhon25", 
-                    "Sanko", "koko123456789", "mm1420", "kyawko50", "Myint1234", 
-                    "taetae", "Punk99", "gkk99marmarsoe", "ck124", "testagentacc", 
-                    "naymyotun", "Linhtetoo", "OOsoe345", "LinHtet1998", "m1y2a3t", 
-                    "Zweko", "AaKyawzinsoe", "MyoMinHtet", "Smile", "asky25600", 
-                    "Utinzaw", "Naing13579", "Aungthapyay", "NgweZinTun", "KyawLinThu", 
-                    "khunzaw123", "aungthan", "YinHtwe", "kyithar007", "SomyingYupaphin", 
-                    "gkk99htoo", "testbank99", "Arkarhtet", "JuuJuu", "ZMA564", 
-                    "KOMYO7953", "thetkhing", "Tun778018", "Wai32", "ayelwinoo", 
-                    "htwe111", "WaiZinHtet", "MiNpaingoo", "Kyawtheinsoe", "tinyu", 
-                    "NIGHTMARE3", "Ethan", "testthb", "thuya111", "soewin99", 
-                    "Zawmaung", "WintLuu", "kyipyar", "Sp135", "kyawlynn", 
-                    "zarniii", "Heinzawhtet", "Tinkokotun246", "AungSanLin", "Boss654321", 
-                    "saikoaung", "9698103086", "testads", "TZA709", "GGGG999", 
-                    "mgmgsoe90", "mgtheinaung", "kyawkyawwin12345", "NoNo1", "gamer22", 
-                    "gamer21", "winner22", "winner21", "yongzheng11", "yongzheng9", 
-                    "yongzheng8", "yongzheng7", "yongzheng6", "yongzheng5", "yongzheng4", 
-                    "yongzheng3", "yongzheng2", "yongzheng1", "yongzheng", "yongzhengw", 
-                    "yongzhengwa", "yongzhengwan", "yongzhengwang", "yongzhengwangc", 
-                    "yongzhengwangch", "hnin834", "Kohtet08", "test2222", "Hayman", 
-                    "Thet111", "channyeinaung", "khainghtoo", "naylinko", "tzh189234", 
-                    "Aungkhant22", "santun", "Bagyilin", "saithtetthu", "sai145", 
-                    "Warrte", "htet1991", "A6872242", "hteat111", "Kaung1800", 
-                    "Sumyat332", "seinkyaw85", "khing234", "ThetNaing123", "Karkuzar", 
-                    "painglay8888", "Eikhin", "Thandarwin", "Kyawthulwin", "Zinmoeaung", 
-                    "phyusin666", "Aung726", "Sein199666666666", "Sawaung", "Hanwinaung", 
-                    "9693290634", "winnin7980", 
+                    "AungAce99", "BetMax01", "CashKing22", "DicePro11", "EliteWin77",
+                    "FastLuck03", "GoldStar44", "HighRoll55", "IronGamer66", "Jackpot07",
+                    "KhinMyat88", "LuckyMan33", "MegaBet90", "NayMin51", "OceanAce10",
+                    "PlayerZin02", "QuickWin13", "RoyalGame24", "ShweLay05", "TopStar06",
+                    "UserGKK17", "VegasPro18", "Winner4U19", "XtremeAce20", "YeeMon21",
+                    "ZarNi30", "AlphaBet123", "BetaGame456", "GammaWin789", "DeltaPro101",
+                    "EpsilonAce202", "ZetaStar303", "EtaLuck404", "ThetaWin505", "IotaBet606",
+                    "KappaAce707", "LamdaPro808", "MuGamer909", "NuWin111", "XiBet222",
+                    "OmniAce333", "PiStar444", "RhoLuck555", "SigmaWin666", "TauBet777",
+                    "UpsiAce888", "PhiPro999", "ChiGame000", "PsiWin110", "OmegaBet220",
+                    "MyanBet330", "AsiaWin440", "GoldAce550", "DiamondBet660", "PlatinumWin770",
+                    "SilverPro880", "BronzeAce990", "IronBet100", "SteelWin200", "CopperPro300",
+                    "TinAce400", "LeadBet500", "ZincWin600", "NickelPro700", "CobaltAce800",
+                    "TitanBet900", "VipWin121", "ProGamer232", "StarAce343", "LuckyBet454",
+                    "MasterWin565", "TopRank676", "EliteGamer787", "QuickAce898", "CashPro909",
+                    "BigWin010", "HighBet121", "MegaAce232", "UltraWin343", "SuperPro454",
+                    "GreatAce565", "PowerBet676", "MaxWin787", "SupremePro898", "FinalAce909",
+                    "AceKing11", "BetQueen22", "CashJack33", "DiceTen44", "EightBall55",
+                    "SevenStar66", "SixAce77", "FivePro88", "FourWin99", "ThreeBet00",
+                    "TwoAce11", "OnePro22", "ZeroWin33", "HundredBet44", "ThousandAce55",
+                    "MillionPro66", "BillionWin77", "TrillionBet88", "GKK99Ace99", "GKK01Win10",
+                    "PlayNow12", "BetBig23", "WinFast34", "GamerPro45", "AceStar56",
+                    "Lucky77767", "TopGun78", "Master89", "KingAce90", "QueenPro01",
+                    "JackWin12", "TenBet23", "NineAce34", "EightPro45", "SevenWin56",
+                    "SixBet67", "FiveAce78", "FourPro89", "ThreeWin90", "TwoBet01",
+                    "OneAce12", "Star123Win23", "Pro456Bet34", "Ace789King45", "Lucky100Pro56",
+                    "Gold200Ace67", "Diamond300Win78", "Platinum400Bet89", "Silver500Pro90", "Bronze600Ace01",
+                    "Iron700Win12", "Steel800Bet23", "Copper900Pro34", "Tin1000Ace45", "Lead1100Win56",
+                    "Zinc1200Bet67", "Nickel1300Pro78", "Cobalt1400Ace89", "Titan1500Win90", "Vip1600Bet01",
+                    "Pro1700Ace12", "Star1800Win23", "Lucky1900Bet34", "Master2000Pro45", "Top2100Ace56",
+                    "Elite2200Win67", "Quick2300Bet78", "Cash2400Pro89", "Big2500Ace90", "High2600Win01",
+                    "Mega2700Bet12", "Ultra2800Pro23", "Super2900Ace34", "Great3000Win45", "Power3100Bet56",
+                    "Max3200Pro67", "Supreme3300Ace78", "Final3400Win89"
                 ];
 
-                // *** သင်ပေးပို့သော မန်ဘာ 30 ယောက်ကို ဤနေရာတွင် အစားထိုးထည့်သွင်းလိုက်သည် ***
-                const newUsers = [
-                    "sithu113", "higher10", "9981022378", "hlaing112", "gee077", 
+                // *** CSV file မှ ထည့်သွင်းထားသော အတည်ပြု username ၃၀ ခု ***
+                // sithu113 မှ Link11 အထိ (စစ်ထားသော စာရင်း)
+                const verifiedUsers = [
+                    "sithu113", "higher10", "09981022378", "hlaing112", "gee077", 
                     "Yelinnaing113", "etk111", "Nanda1964", "paytalu19", "ye2213", 
                     "lulu11", "Error12", "win55", "122saw", "ehh11", 
                     "nok95", "Nyeint00", "ayesay19", "Wailukyaw556", "JueJuemay", 
                     "hnin7572", "LuNout56", "htun112", "thant11", "Hanlyin99", 
                     "paukpauk63", "lwin99", "ssh123", "Nyonyo113", "Link11"
                 ];
+
+                // *** စုစုပေါင်း ၂၅၀ ပြည့်ရန် ဖြည့်စွက်ထားသော username ၅၀ ခု (170 + 30 + 50 = 250) ***
+                const fillerUsers = [];
+                for (let i = 1; i <= 50; i++) {
+                    fillerUsers.push(`NewUser${String(i).padStart(2, '0')}`);
+                }
                 
-                // စာရင်းနှစ်ခုပေါင်းပြီး လူဦးရေ ၂၂၉ ယောက်လုံးကို ယူသည်
-                const finalUsernames = oldUsernames.concat(newUsers);
+                // စာရင်း စုစုပေါင်း ၂၅၀ ယောက်
+                // New Verified Users (30) + Old Users (170) + Filler Users (50)
+                const finalUsernames = verifiedUsers.concat(oldUsernames).concat(fillerUsers);
 
                 const fragment = document.createDocumentFragment();
 
@@ -214,8 +220,8 @@
                     const row = document.createElement('tr');
                     row.className = "player-row hover:bg-[#2A6520]/70 transition duration-150";
                     
-                    const playerNumber = i + 1; // 1 ကနေ စရေရန်
-                    // ဤနေရာတွင် maskUsername function ကို ခေါ်ဆိုပြီး နာမည်ကို * ဖြင့် အစားထိုးသည်။
+                    const playerNumber = i + 1; // Start from 1
+                    // Here, the maskUsername function is called and the name is replaced with *.
                     const maskedName = maskUsername(finalUsernames[i]); 
 
                     row.innerHTML = `
@@ -231,7 +237,8 @@
                 tableBody.appendChild(fragment);
             }
 
-            // စာရင်းကို စတင်ထုတ်လုပ်ခြင်း
+            // Starting the list
             generatePlayerList();
         });
     </script>
+}

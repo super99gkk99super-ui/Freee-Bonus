@@ -1,75 +1,161 @@
-// --- 3. Player List Generation ---
-function generatePlayerList() {
-    
-    // CSV ဖိုင်ထဲမှ ထုတ်ယူထားသော Username ၃၀ (နံပါတ် ၁ မှ ၃၀ အထိ)
-    const verifiedUsers = [
-        "sithuaung99", "aungzinmoe1997", "zin26622", "sithu113", "zero19",
-        "etk111", "Kophyo222999", "234harry", "aungzinmoe1996", "paytalu19",
-        "win55", "umgaye008", "koaungzinmoe19", "Farioy3", "lwin99",
-        "koaungzinmoe2025", "sanlin2310", "ayesay19", "thant11", "waimoe789",
-        "Khin19", "hlaing112", "Norara12", "san6220", "09883262366",
-        "lulu11", "aungzinmoe19", "foechan27", "htun112", "Error12"
-    ];
-
-    // စုစုပေါင်း ၂၀၀ ပြည့်ရန် နောက်ထပ် ၁၇၀ ခု ဖြည့်စွက်ခြင်း
-    const oldUsernames = [ 
-        "AungAce99", "BetMax01", "CashKing22", "DicePro11", "EliteWin77",
-        "FastLuck03", "GoldStar44", "HighRoll55", "IronGamer66", "Jackpot07",
-        "KhinMyat88", "LuckyMan33", "MegaBet90", "NayMin51", "OceanAce10",
-        "PlayerZin02", "QuickWin13", "RoyalGame24", "ShweLay05", "TopStar06",
-        "UserGKK17", "VegasPro18", "Winner4U19", "XtremeAce20", "YeeMon21",
-        "ZarNi30", "AlphaBet123", "BetaGame456", "GammaWin789", "DeltaPro101",
-        "EpsilonAce202", "ZetaStar303", "EtaLuck404", "ThetaWin505", "IotaBet606",
-        "KappaAce707", "LamdaPro808", "MuGamer909", "NuWin111", "XiBet222",
-        "OmniAce333", "PiStar444", "RhoLuck555", "SigmaWin666", "TauBet777",
-        "UpsiAce888", "PhiPro999", "ChiGame000", "PsiWin110", "OmegaBet220",
-        "MyanBet330", "AsiaWin440", "GoldAce550", "DiamondBet660", "PlatinumWin770",
-        "SilverPro880", "BronzeAce990", "IronBet100", "SteelWin200", "CopperPro300",
-        "TinAce400", "LeadBet500", "ZincWin600", "NickelPro700", "CobaltAce800",
-        "TitanBet900", "VipWin121", "ProGamer232", "StarAce343", "LuckyBet454",
-        "MasterWin565", "TopRank676", "EliteGamer787", "QuickAce898", "CashPro909",
-        "BigWin010", "HighBet121", "MegaAce232", "UltraWin343", "SuperPro454",
-        "GreatAce565", "PowerBet676", "MaxWin787", "SupremePro898", "FinalAce909",
-        "AceKing11", "BetQueen22", "CashJack33", "DiceTen44", "EightBall55",
-        "SevenStar66", "SixAce77", "FivePro88", "FourWin99", "ThreeBet00",
-        "TwoAce11", "OnePro22", "ZeroWin33", "HundredBet44", "ThousandAce55",
-        "MillionPro66", "BillionWin77", "TrillionBet88", "GKK99Ace99", "GKK01Win10",
-        "PlayNow12", "BetBig23", "WinFast34", "GamerPro45", "AceStar56",
-        "Lucky77767", "TopGun78", "Master89", "KingAce90", "QueenPro01",
-        "JackWin12", "TenBet23", "NineAce34", "EightPro45", "SevenWin56",
-        "SixBet67", "FiveAce78", "FourPro89", "ThreeWin90", "TwoBet01",
-        "OneAce12", "Star123Win23", "Pro456Bet34", "Ace789King45", "Lucky100Pro56",
-        "Gold200Ace67", "Diamond300Win78", "Platinum400Bet89", "Silver500Pro90", "Bronze600Ace01",
-        "Iron700Win12", "Steel800Bet23", "Copper900Pro34", "Tin1000Ace45", "Lead1100Win56",
-        "Zinc1200Bet67", "Nickel1300Pro78", "Cobalt1400Ace89", "Titan1500Win90", "Vip1600Bet01",
-        "Pro1700Ace12", "Star1800Win23", "Lucky1900Bet34", "Master2000Pro45", "Top2100Ace56",
-        "Elite2200Win67", "Quick2300Bet78", "Cash2400Pro89", "Big2500Ace90", "High2600Win01",
-        "Mega2700Bet12", "Ultra2800Pro23", "Super2900Ace34", "Great3000Win45", "Power3100Bet56",
-        "Max3200Pro67", "Supreme3300Ace78", "Final3400Win89"
-    ];
-
-    // အစီအစဉ်အတိုင်းပေါင်းစပ်ခြင်း (၃၀ + ၁၇၀ = ၂၀၀)
-    const finalUsernames = verifiedUsers.concat(oldUsernames);
-
-    const fragment = document.createDocumentFragment();
-    const listLength = finalUsernames.length; 
-
-    for (let i = 0; i < listLength; i++) {
-        const row = document.createElement('tr');
-        row.className = "player-row hover:bg-[#2A6520]/70 transition duration-150";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ကစားသမား စာရင်း (No. | Username)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
         
-        const playerNumber = i + 1;
-        const maskedName = maskUsername(finalUsernames[i]); 
+        body {
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            background-color: #183513;
+            background-image: linear-gradient(to bottom, #183513, #2A6520);
+            overflow: hidden; 
+            position: relative;
+            padding-top: 6rem;
+        }
+        
+        @keyframes fall {
+            to { transform: translateY(100vh); }
+        }
+        .snowflake {
+            position: absolute;
+            background: #FFFFFF;
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0.8;
+            will-change: transform;
+            animation-name: fall;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+            z-index: 10;
+        }
 
-        row.innerHTML = `
-            <td class="player-cell whitespace-nowrap text-sm font-medium text-yellow-300">
-                ${playerNumber}
-            </td>
-            <td class="player-cell whitespace-nowrap text-base font-semibold text-white">
-                ${maskedName}
-            </td>
-        `;
-        fragment.appendChild(row);
-    }
-    tableBody.appendChild(fragment);
-}
+        #list-container::-webkit-scrollbar { width: 8px; }
+        #list-container::-webkit-scrollbar-track { background: #0f1c09; border-radius: 10px; }
+        #list-container::-webkit-scrollbar-thumb { background: #fef3c7; border-radius: 10px; }
+
+        .player-row:nth-child(even) { background-color: rgba(30, 70, 22, 0.6); }
+        .player-row:nth-child(odd) { background-color: rgba(42, 101, 32, 0.6); }
+
+        .player-cell {
+            padding: 10px 16px;
+            text-align: left;
+            border-bottom: 1px solid rgba(254, 243, 199, 0.2);
+        }
+    </style>
+</head>
+<body class="antialiased text-white relative pt-24 pb-10"> 
+    
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-[#1E4616] shadow-xl border-b border-yellow-300/50 h-20 flex items-center">
+        <div class="container mx-auto px-4 flex justify-between items-center w-full">
+            <div class="flex items-center space-x-3">
+                <img src="https://share.cdn.viber.com/pg_download?id=0-04-06-d6132c86ce2ee6a98ff88a6122bc24c865bc772a4abbab6a9ba76575960b75f7&filetype=jpg&type=icon" 
+                     alt="GKK 99 Logo" 
+                     class="h-10 w-10 rounded-lg border-2 border-yellow-300 object-cover"
+                     onerror="this.src='https://placehold.co/40x40/fef3c7/183513?text=L';">
+                <span class="text-xl font-bold text-yellow-300 hidden sm:inline">GKK99</span>
+            </div>
+            <button onclick="window.location.href='https://gkk99cta.mssg.me/'"
+                    class="px-4 py-2 bg-yellow-400 text-[#183513] font-semibold rounded-full shadow-md hover:bg-yellow-300 transition duration-300 transform hover:scale-105 active:scale-95">
+                ဆက်သွယ်ရန်
+            </button>
+        </div>
+    </nav>
+    
+    <div class="container mx-auto px-4 w-full max-w-sm md:max-w-md lg:max-w-lg z-10 relative">
+        <header class="text-center mb-6">
+            <h1 class="text-4xl font-extrabold text-yellow-300 drop-shadow-lg">Congratulations</h1>
+            <p class="text-lg text-white-200 mt-1">
+                2026 နှစ်သစ် ကံကောင်းခြင်း ငွေသွင်းမလို အခမဲ့ဘောနပ်ကို Channel Join ရရှိသွားသောမန်ဘာများ
+            </p>
+        </header>
+
+        <div id="list-container" class="bg-[#1E4616]/70 rounded-xl shadow-2xl backdrop-blur-sm border border-[#2A6520]/50 overflow-hidden overflow-y-auto h-[70vh] w-full transition duration-500">
+            <table class="min-w-full divide-y divide-[#2A6520]">
+                <thead class="bg-[#1E4616] sticky top-0 z-20 shadow-lg border-b border-yellow-300">
+                    <tr>
+                        <th scope="col" class="player-cell w-1/4 font-extrabold text-sm uppercase tracking-wider text-yellow-300">No</th>
+                        <th scope="col" class="player-cell w-3/4 font-extrabold text-sm uppercase tracking-wider text-yellow-300">Username</th>
+                    </tr>
+                </thead>
+                <tbody id="player-table-body" class="bg-transparent divide-y divide-[#2A6520]"></tbody>
+            </table>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tableBody = document.getElementById('player-table-body');
+            const body = document.body;
+            const SNOWFLAKE_COUNT = 100;
+
+            function maskUsername(username) {
+                if (!username) return "";
+                let masked = "";
+                for (let i = 0; i < username.length; i++) {
+                    masked += (i % 2 === 0) ? username[i] : '*';
+                }
+                return masked;
+            }
+            
+            function createSnowflake() {
+                const snowflake = document.createElement('div');
+                snowflake.classList.add('snowflake');
+                const size = Math.random() * 3 + 1; 
+                snowflake.style.width = `${size}px`;
+                snowflake.style.height = `${size}px`;
+                snowflake.style.left = `${Math.random() * 100}vw`;
+                snowflake.style.animationDuration = `${Math.random() * 20 + 10}s`;
+                snowflake.style.animationDelay = `-${Math.random() * 15}s`;
+                snowflake.style.top = `${-Math.random() * 100}px`;
+                body.appendChild(snowflake);
+            }
+
+            for (let i = 0; i < SNOWFLAKE_COUNT; i++) { createSnowflake(); }
+            
+            function generatePlayerList() {
+                const usernames = [
+                    "Naing2233", "keNo56742", "lyanlyan", "aungc", "phyowailinn", "Aungkonaing2023", "Myo29581", "Zow1234", "ngayu123", "komin1367",
+                    "1111111111", "kyaw1532", "KyawZinBo1661997", "aye070484", "wailinphyo", "kokhant1094", "kothit", "zweko7", "bravo283", "naphyo",
+                    "YLHTU", "par12345", "KoKo2040", "shwethine12", "zunemyat17", "minye55", "koko7421", "Monker", "Iamthegod", "bokbok",
+                    "Shine5", "NGAPALI", "soe689045", "aungaung54321", "76313", "kaungshuma", "myolay999", "kit670Gf", "heinhtat9", "gKk323711",
+                    "KyawZin686", "Myomin136", "Susuzaw2001", "200122", "Luhla777", "ooooyehtet", "431334", "SoeWinHtut21", "Zin1788", "knkn7777",
+                    "BhoneMinKhant", "thanaung99", "hyakzt", "sharrow", "zawminnaing55", "Kzaya02286", "Shweli666666", "Sun142", "yamin7878", "gkmgmgoo12",
+                    "mmk200", "Htetwai74", "guccigang", "Lintun234567", "Htutzaw4102", "Re777", "tuntin12", "Chitmin2003", "Dawayemyat", "AunngLay111",
+                    "Min52780", "Htun014101", "Kk8642", "Myat2290", "QMoney", "gkk99295810", "gkk992958010", "momo1989", "kk133798", "sharlay007",
+                    "WaiYanHtay", "thinkhaing555", "Kyawlinhtet67", "shwephonetaw", "JJ777", "Moon121988", "Tta1985", "Abc2580", "Leesar777", "toekala99",
+                    "zinko1500", "Linoonom", "poe456", "komoemoe111", "Asd79", "79asd", "Yan222naung", "788465", "Phoe666", "waiyanhtya",
+                    "Naing1993", "moethuzartun", "taetae", "Aung4432", "Sai000000", "Kemno", "shar9734", "Kophyo1122", "lawzaw13590", "nini207082055170",
+                    "kaungkaung10692", "May55555", "King2001", "atm106", "MoMo11111", "tunmyint", "MoMo11", "759yezaw", "putar123", "min456789",
+                    "eimotthu", "nanAyeLiw", "Sakular", "zawlinhtet2009", "123454", "Xx000", "Win4421", "zinhein", "NiNi12345", "yiyi4321",
+                    "thargyi445", "Kominminsoe12345", "aung691", "Black1379", "Azaw999", "Akyaw973", "Abc35351", "Aung4517", "wai9890", "wy120980",
+                    "mgsoe57890", "HsuThandarHlaing", "Kroger", "ShanelinnAung", "zinbo991", "yetayza77", "wpwp7654", "Supwinthnin14", "maw2541", "uaungsein7",
+                    "Sai1o", "Ut131164", "Hein66", "pyae123098", "aungkoko1234", "tantan", "ko6262", "yelin121", "khinmar1990", "HsuMyatPhyu12345",
+                    "Uzin969231", "noco234", "khinmoewin549703", "PMK112020", "hggjuf", "naylinsoe9", "Hla815966", "kokolay17", "chi22", "akm208",
+                    "sithuaung99", "aungzinmoe1997", "zin26622", "sithu113", "zero19", "etk111", "Kophyo222999", "234harry", "aungzinmoe1996", "paytalu19",
+                    "win55", "umgaye008", "koaungzinmoe19", "Farioy3", "lwin99", "koaungzinmoe2025", "sanlin2310", "ayesay19", "thant11", "waimoe789",
+                    "Khin19", "hlaing112", "Norara12", "san6220", "9883262366", "lulu11", "aungzinmoe19", "foechan27", "htun112", "Error12"
+                ];
+
+                const fragment = document.createDocumentFragment();
+                usernames.forEach((name, index) => {
+                    const row = document.createElement('tr');
+                    row.className = "player-row hover:bg-[#2A6520]/70 transition duration-150";
+                    row.innerHTML = `
+                        <td class="player-cell whitespace-nowrap text-sm font-medium text-yellow-300">${index + 1}</td>
+                        <td class="player-cell whitespace-nowrap text-base font-semibold text-white">${maskUsername(name)}</td>
+                    `;
+                    fragment.appendChild(row);
+                });
+                tableBody.innerHTML = "";
+                tableBody.appendChild(fragment);
+            }
+            generatePlayerList();
+        });
+    </script>
+</body>
+</html>

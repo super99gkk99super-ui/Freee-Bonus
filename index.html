@@ -13,7 +13,7 @@
             min-height: 100vh;
             background-color: #183513;
             background-image: linear-gradient(to bottom, #183513, #2A6520);
-            overflow: hidden; 
+            overflow-x: hidden; 
             position: relative;
             padding-top: 6rem;
         }
@@ -55,8 +55,7 @@
             <div class="flex items-center space-x-3">
                 <img src="https://share.cdn.viber.com/pg_download?id=0-04-06-d6132c86ce2ee6a98ff88a6122bc24c865bc772a4abbab6a9ba76575960b75f7&filetype=jpg&type=icon" 
                      alt="GKK 99 Logo" 
-                     class="h-10 w-10 rounded-lg border-2 border-yellow-300 object-cover"
-                     onerror="this.src='https://placehold.co/40x40/fef3c7/183513?text=L';">
+                     class="h-10 w-10 rounded-lg border-2 border-yellow-300 object-cover">
                 <span class="text-xl font-bold text-yellow-300 hidden sm:inline">GKK99</span>
             </div>
             <button onclick="window.location.href='https://gkk99cta.mssg.me/'"
@@ -119,31 +118,26 @@
             
             function generatePlayerList() {
                 const usernames = [
-                    "Akm90", "sithu113", "win55", "Snl123", "aungzinmoe1997", "Sto123", "Farioy3", "zero19", "lwin99", "lulu11", 
-                    "halaung432", "koaungzinmoe2025", "Error12", "Yuzhong", "hlaing112", "Khin19", "znt123", "waimoe789", "aakk2024", "Htoo566", 
-                    "Z982023", "Norara12", "Htetwai45", "htun112", "aungzinmoe19", "Nyeint00", "thant11", "kaw99", "zpp88", "koaungzinmoe19", 
-                    "NuamZamCing", "Ayehninphyu", "yzyzyz777", "Min1500", "Konyi000", "mg3260", "kyaw295", "Thu5678", "Arkar2", "beru9999", 
-                    "TZT901", "Phyolwin45586", "ttmys", "Tuch7979", "saisai00000", "nilathan", "Big502", "zwyemaung", "zaw12123", "yelinkay", 
-                    "A89197564", "76274", "Hlaiy", "wmhein", "Wot5555", "khtet0", "Htetarkar0909", "kothanwin1737", "KoHtweko", "Mcmin123456", 
-                    "Kio112233", "pppaa", "Honey125", "nyi086525", "thanoo234", "nyiwin", "Khinchowin", "Nyanlinhtet123", "alay97768", "Aung2467", 
-                    "hla471", "Waiphyo1111", "Aung44000", "Khint12345", "kyawkyaw7", "aunga12345", "khin279132", "waimarphoo", "zin105836", "ya3398", 
-                    "Kyawthanhtike123", "kophyo009", "nyizay22222222", "ZarNi2024", "laylay222", "Chitei", "maysupaing279132", "Pwarrmel", "Yekyaw123", "ban552", 
-                    "Aungsoe5591", "Pyae1479", "Koko9980", "eimon65s", "Nin123", "aungsike", "zzzmmm", "kta1122", "love7777", "YYU77", 
-                    "MyatMinHtut77", "Aung1941997", "thukyaw111", "aunglin2468", "zkkhtwe", "str123", "Myozar", "zarn583460", "soekyaw123", "niniaung", 
-                    "Say305", "Chit12456", "9662513570", "kokotun890", "hlamyoaung918", "cloudxyz88", "koko9979", "zayyar999", "MyoLinZaw", "5646ttwam", 
-                    "kjord", "nyeinswamthu11", "wai259", "kothuyahtun", "mhw559", "2004lyinko", "zyh79", "6ehddjjjs", "ghjkl111", "ASP224", 
-                    "ABK123", "NCKKO", "9257843332", "KaungKaungHtet", "303066", "naing875", "Kogyi4", "Kyawlayko", "Nay1234567890", "Kl0920975", 
-                    "thwe661671552t", "Saimauk", "goblin99", "kkbb17", "KoAyeTun", "Chit1995", "tumchit", "LuckyYan", "Nanda3229", "joey007", 
-                    "naing45678", "661060548", "ayethu453657", "kophyo491996", "Y834834", "zarchihlaing", "cococo", "Kokohtet33", "MyintMyatAung111", "kokokokoko", 
-                    "Dawtinnilar", "Lay2981", "33min", "Dawayemon", "seinko90", "ttzz112233", "Thuya56", "thuzar17", "koaung197", "Paing135", 
-                    "myin1", "high8877", "boaung1234", "1a2b3c4d", "myoaung1111", "aun223344", "KyawKyawLinn", "saisai36", "Jeyke", "Venn6055", 
-                    "Yethiha123456", "naing89", "tintkhingkyaw", "Tk123456", "butterfly1", "htetaung1998", "Myopaingsoe", "Asea669174", "minoo0925794536", "zin77858", 
-                    "kolapyaelin", "oolaygy007", "77789", "9693137186", "yange991015", "zayar56", "Naylinzaw1231", "emily1993", "667898", "ZZK6423", 
-                    "myotunaung", "Htethlaing", "KYAW123456789123", "Aungzar6423", "joe96", "tar1234", "Tz112233", "fxgfg6", "phyomaung123", "AprilAung", 
-                    "susu7", "minminzawsbo", "Kosoe1", "Pgkk99", "waiphyo8", "MgMg1990", "Ayetha1996", "Min112198", "swarkyaw", "hehos", 
-                    "myotint", "Kyawlinkhant", "KOKOMG777", "Zinmar5", "AungAung7654", "Htetwaio876", "Saimoon", "ChitPaingOo", "KOMYO7953", "Shine2240", 
-                    "Maysapal", "Pt09755934640", "naung13788", "SittMinAung777", "py2004", "13", "63nyeinchan", "kayni5523", "Aye7566", "nayhtwe123", 
-                    "thetpaing1234", "mkk1997", "Gkkmkk", "htoohtoo58345834", "AunLay1889", "SA009", "Tunlinaung19", "Chitsanmg2006", "Mgmyo444", "9696299184"
+                    "san6220", "Zayar265", "Link11", "Kzin234", "YawGyi99", "Thawthawpoe65", "Zn1234", "Poeei555", "Mee77", "Thin25721",
+                    "ayethinzar", "zero19", "Tintin31", "aungzinmoe1997", "hnin7572", "Thurakyaw99999", "Khaing987", "koaungzinmoe2025", "ms33013", "Aungzinmoe25",
+                    "Haze31", "koaungzinmoe19", "kzmm333", "aungzinmoe19", "Numonkyaw", "ssh123", "aungzinmoe1996", "ayemyatmon1", "Khin19", "aakk2024",
+                    "htet1121", "Zawminlatt", "yewin", "Eusakudazzy123", "Aung2024", "ChitKo557", "kyawkyawlay", "thetnaing311901", "Zawlayko", "zinzin",
+                    "tyo123", "thin237227", "soemoe151", "Thulay", "SweShing", "Soeaung", "phyogyi", "Benjiro", "zar246", "Kgg0071",
+                    "KhunAkhay", "khingwai253559", "cheshi", "kaungmyatlin", "Linlin12", "haymanoo", "kyawmyothu", "Sanwinhtoo", "winn3", "Thein1996",
+                    "kyaw123123", "soelay123", "Lin123", "khin23", "Kaung0000", "naa200231", "koshine12", "pawmyar12", "25333", "Saithiha",
+                    "Shwe1", "PHYOEWAI26", "Nc13579", "ZinHlaingOo", "UKyaw", "ThuraOo", "nayko123", "KhantArkar6720", "Zawlinhtet129", "nayko",
+                    "Winko99", "test2358", "aung1500", "Aweaq", "SoeMoe203", "Win079", "Ng124", "thu12345", "Mgsai", "moe58692",
+                    "yan555", "koko123456", "Soemin", "arkarphyo733", "Poenadihlaing", "phyuzi", "zawwmyohtut", "Koaung", "KoHein8400", "ktwotheh",
+                    "Tt446673", "myint980", "aungthu123", "htayhtay", "gkk21", "kolatt", "athu0420", "Jistan", "Teacher", "thuraphyo99",
+                    "Komoee378", "phyu1", "Ttttt", "minmin4", "spminmin4", "kyaw31", "agmyo", "bobotun", "Nova123", "Unyuntwin",
+                    "winwin", "aungphyo123", "kaunggg", "kaungg", "Myamya123", "mala99", "TZW12345", "thanlwincho", "phyo1954739", "Htetpaing88",
+                    "tokegyi", "ggk99", "Col317", "abcdo", "STAR79", "zinko", "kaung1166", "KokoThin", "winthu12", "Thein2639",
+                    "thae7811", "Kyaw0000", "thuzar", "KoKhant123", "kohtet293", "one2006", "Kyawlinhtun20620", "Sawnaychi", "kyawminhtike", "chan7",
+                    "Aung5", "AungMyoMin1996", "lover", "andy0814", "LinnLinn000", "gar12345", "Yyaak4", "Myintmyat162022", "Wtt123", "Zmayy",
+                    "soenaing", "thaethae384565", "11434", "May-34", "PPTMZ", "ShineKhin272003", "BaSwe", "67541", "kojuary777", "komoethu",
+                    "aungyellthu", "Kokonaw", "Naylin2023", "zaw12345", "phyo007", "Zinkyaw", "aungs12", "tiger7", "nainghtet", "kps78",
+                    "Yeyint123", "That1234", "Tojisan1", "jack79", "kookaye", "Saimon12", "Tayza93", "Naythit99", "moekyaw2323", "saiphyu",
+                    "Koshane", "Chan123456", "nyeinchanphyo", "Gk337", "waiyan2580", "Sigyi123", "gksoe71142", "zin225", "Minthiha00", "htainwin1992"
                 ];
 
                 const fragment = document.createDocumentFragment();

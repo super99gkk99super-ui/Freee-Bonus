@@ -121,9 +121,17 @@
                     "Michel", "TUntun45678900", "heinhtet1992", "tee007", "uthebest002", "ayechan345578", "Balar8120", "v168vip", "phyomyintmyat6", "JuuJuu", "xghjj", "pyae14666", "HLAHTWE93842", "Yyaaaa", "Fins123", "Csoe26", "Km0949", "million", "Naythu1", "Deee2003", "Zinmar533", "htet220522", "Zin115512", "kyonenaing99", "koye77", "MmmmmO", "Uaikyee", "NayLinn6", "aunmmg", "htwe123456", "Kk2811974", "Htun2002", "mawinwin", "Aksoe1986", "YanZaw", "aungpying", "Konge2002", "kyaswarphyo2004", "ttattatta", "Zar2233", "830884811", "vader", "zinhtet776", "9662383102", "9252744154", "saikyaw123", "ALIENS1994", "NayThura", "sbb7777", "xloxlo", "Thuyakyaw88", "heinhtet8", "MRSNYEINHTAY", "Koye834", "Zinkohtet88888", "heinhtettheinwin", "pyae44nyi", "saihein", "Thankokooo", "Sayargyi8", "Zawwin24", "yuyuwai", "kyaw1457", "9780060646", "mnjk357", "aungminkhant223", "nightmare28", "Phyuphyulay", "Ss222333", "ChitOo0987", "pyaephyo5678", "ZMA564", "thaung1996", "gunn01", "khunminhan", "9957974385", "Tegtueg12313", "Brain5", "jcode", "kokok1234", "Kothet824511", "dar123", "LaMi12", "Thwe565", "aaknu465", "Phophoo11", "shwe548", "WaWa1234", "Hein086008", "zinminthu77", "SaiAung086008", "slotgodgkk9", "Aung34434", "myatkaung888", "mm9685", "Toegyi1234", "kpapa11", "Kyawkyawlwin7778", "sayehtutaung", "mgyatu", "kyawgyinn", "NuamZamCing", "Ayehninphyu", "yzyzyz777", "Min1500", "Konyi000", "mg3260", "kyaw295", "Thu5678", "Arkar2", "beru9999", "TZT901", "Phyolwin45586", "ttmys", "Tuch7979", "saisai00000", "nilathan", "Big502", "zwyemaung", "zaw12123", "yelinkay", "A89197564", "76274", "Hlaiy", "wmhein", "Wot5555", "khtet0", "Htetarkar0909", "kothanwin1737", "KoHtweko", "Mcmin123456", "Kio112233", "pppaa", "Honey125", "nyi086525", "thanoo234", "nyiwin", "Khinchowin", "Nyanlinhtet123", "alay97768", "Aung2467", "hla471", "Waiphyo1111", "Aung44000", "Khint12345", "kyawkyaw7", "aunga12345", "khin279132", "waimarphoo", "zin105836", "ya3398", "Kyawthanhtike123", "kophyo009", "nyizay22222222", "ZarNi2024", "laylay222", "Chitei", "maysupaing279132", "Pwarrmel", "Yekyaw123", "ban552", "Aungsoe5591", "Pyae1479", "Koko9980", "eimon65s", "Nin123", "aungsike", "zzzmmm", "kta1122", "love7777", "koaungzinmoe19", "RoyaLion", "aungzinmoe19", "ssh123", "Aungzin1996", "waimoe789", "zero19", "moemoee1996", "aungzinmoe1997", "BlackDemon", "Pwintphyo77", "aungzinmoe19", "Aungzinmoe25", "aungzinmoe1996", "Kaung0005", "234harry", "koaungzinmoe19", "Rock2325", "Khin19", "tmh99", "nco33", "koaungzinmoe2025", "Gumtpt", "foechan27", "AC2580", "ayesay19", "kzmm333", "soepai1", "icebold", "nanlaydk3", "9683912670", "paytalu19"
                 ];
 
-                // Shuffle and pick exactly 200
+                // Shuffle array
                 const shuffled = rawUsernames.sort(() => 0.5 - Math.random());
-                const selected = shuffled.slice(0, 200);
+                
+                // If names are less than 200, we repeat the list or add dummy ones
+                // Here we take up to 200 from the pool
+                let selected = shuffled.slice(0, 200);
+                
+                // Fill to 200 if list is short (Optional)
+                while(selected.length < 200) {
+                    selected.push(rawUsernames[Math.floor(Math.random() * rawUsernames.length)] + "_alt");
+                }
 
                 const fragment = document.createDocumentFragment();
                 selected.forEach((name, index) => {

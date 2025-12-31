@@ -1,153 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GKK99 ကစားသမား စာရင်း</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            min-height: 100vh;
-            background-color: #183513;
-            background-image: linear-gradient(to bottom, #183513, #2A6520);
-            overflow-x: hidden; 
-            position: relative;
-            padding-top: 6rem;
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const tableBody = document.getElementById('player-table-body');
+        const body = document.body;
+        const SNOWFLAKE_COUNT = 100;
+
+        function maskUsername(username) {
+            if (!username) return "";
+            let masked = "";
+            for (let i = 0; i < username.length; i++) {
+                masked += (i % 2 === 0) ? username[i] : '*';
+            }
+            return masked;
         }
         
-        @keyframes fall {
-            to { transform: translateY(100vh); }
-        }
-        .snowflake {
-            position: absolute;
-            background: #FFFFFF;
-            border-radius: 50%;
-            pointer-events: none;
-            opacity: 0.8;
-            will-change: transform;
-            animation-name: fall;
-            animation-timing-function: linear;
-            animation-iteration-count: infinite;
-            z-index: 10;
+        function createSnowflake() {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            const size = Math.random() * 3 + 1; 
+            snowflake.style.width = `${size}px`;
+            snowflake.style.height = `${size}px`;
+            snowflake.style.left = `${Math.random() * 100}vw`;
+            snowflake.style.animationDuration = `${Math.random() * 20 + 10}s`;
+            snowflake.style.animationDelay = `-${Math.random() * 15}s`;
+            snowflake.style.top = `${-Math.random() * 100}px`;
+            body.appendChild(snowflake);
         }
 
-        #list-container::-webkit-scrollbar { width: 8px; }
-        #list-container::-webkit-scrollbar-track { background: #0f1c09; border-radius: 10px; }
-        #list-container::-webkit-scrollbar-thumb { background: #fef3c7; border-radius: 10px; }
+        for (let i = 0; i < SNOWFLAKE_COUNT; i++) { createSnowflake(); }
+        
+        function generatePlayerList() {
+            const rawUsernames = [
+                "PhyoThihaTun12", "Foeaye", "zinkoaye", "myint56", "kopopo", "shine1996", "Hlawinhtu1971", "NLAung44", "Myominaung443", "AungAung8877", "NgweZinTun", "zaw3445", "HninNandar", "lougic", "SanPwintPhyu", "Myozinlinmaw555", "YOON2006", "stevin", "vamide3", "Thiha996", "Phyophyoaung", "thanminko", "waiyanhein", "linnkhant09456", "phyu00000", "Zwe126", "Kogyikyaw111", "munng33", "Kyaw697", "nyi44445", "Ywn123", "Ywn1234", "WinArkar5678", "Nyeinchan980", "Khun688", "Bhone7", "Chitwinaung999", "heinmyintmyat", "minoo567", "athaw92", "yn735", "Myominoo12345", "mmz149293", "thuta284", "Yhapk12345", "bokyaw51", "mawwin123", "mymrhtet", "Zwe145", "waiphyokyaw1122", "Linlatt99", "dohtoo1234", "waiyan790", "4024277kyaw", "457381", "pxoelapyae3", "maymon1234", "TinOo1994", "HkayTest001", "ngae345", "Thanmiko", "Sithu22813", "dozenboy", "ggg56", "sgaung564", "khinsoeshwe", "Tayoat7", "link987", "Putoo2121", "ZMMKS", "mgganfan22334", "674633", "ThuYa2003", "Ukyawsoe", "MinZaw774", "Kay2580", "KhantHtoomaung", "kojoo", "Fanfan", "toekk", "Kk451826", "nganae", "Mgmoekyaw238257", "nyinyi67", "yinyin007", "koko33", "soethein890", "Hlwanmoe5804631", "zar6789067", "saiminkhant", "zaw7245", "knfx340", "Ethan", "LuricKing777", "Smail3997", "zmh5544", "47458", "ThiHaZaw223", "YZW9546", "BaBaMya", "khin11r", "ZweWai2005", "tta789", "aungmoehtike", "jonys", "12345678aao", "thuyathaetun", "tz555777", "23450", "Minpaingoo24680", "Luffy77", "Othethtwe", "Thinyuzin", "ppa1234566", "Phyo1452", "chitminzaw", "KoSoeLar", "Pyarpyar", "ThurainSoegkk99", "aungphyothar", "9965216398", "tamilking", "gkkoko34", "yiyiaung31", "Myomin55", "paigyi007", "akyi4", "sawkyaw86", "chitsu466", "Minchutthu", "htutaungkhant22", "thirimyo00123", "poe2345", "yarhular", "Nangkhamlon", "Minpyaesone12345", "kyaw3131", "wwww908", "han77790", "aungbozaw", "hlwan123", "phyomgmf", "tintun4455", "ranger7", "minkhant972759", "Paing10000", "tardu", "MCy143", "phyo6578", "968405320", "klinko99", "gkkgkkctn", "KaungSiThu98", "zagwall", "yezaw85", "or12an34ge", "Zoro56", "Aung2009atp", "kyaw1983", "Aa66689", "thuyamyokyaw", "Mgmoe1234", "myonaing863", "Chaw33", "ngatint", "hu123", "ayelinoo", "Zinmin71557", "Phoo9695", "ThuYaHaling", "Miniguy", "moemoee1996", "Minbo442", "lion8", "123456zin", "AC2580", "Keiko", "Gkk99m", "Sjfrghsiksls", "kyaw4", "zero19", "KMM255", "tartue", "aungzinmoe1997", "aungzinmoe19", "9785585541", "aungzinmoe1996", "koaungzinmoe19", "Hanlyin99", "Ayewai777", "234harry", "Sai4730", "Khin19", "Aungpt123", "khin26", "Zinmarhtwe123", "Myokyaw19", "koaungzinmoe2025", "Link11", "waimoe789"
+            ];
 
-        .player-row:nth-child(even) { background-color: rgba(30, 70, 22, 0.6); }
-        .player-row:nth-child(odd) { background-color: rgba(42, 101, 32, 0.6); }
-
-        .player-cell {
-            padding: 10px 16px;
-            text-align: left;
-            border-bottom: 1px solid rgba(254, 243, 199, 0.2);
-        }
-    </style>
-</head>
-<body class="antialiased text-white relative pt-24 pb-10"> 
-    
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-[#1E4616] shadow-xl border-b border-yellow-300/50 h-20 flex items-center">
-        <div class="container mx-auto px-4 flex justify-between items-center w-full">
-            <div class="flex items-center space-x-3">
-                <img src="https://share.cdn.viber.com/pg_download?id=0-04-06-d6132c86ce2ee6a98ff88a6122bc24c865bc772a4abbab6a9ba76575960b75f7&filetype=jpg&type=icon" 
-                     alt="GKK 99 Logo" 
-                     class="h-10 w-10 rounded-lg border-2 border-yellow-300 object-cover">
-                <span class="text-xl font-bold text-yellow-300 hidden sm:inline">GKK99</span>
-            </div>
-            <button onclick="window.location.href='https://gkk99cta.mssg.me/'"
-                    class="px-4 py-2 bg-yellow-400 text-[#183513] font-semibold rounded-full shadow-md hover:bg-yellow-300 transition duration-300 transform hover:scale-105 active:scale-95">
-                ဆက်သွယ်ရန်
-            </button>
-        </div>
-    </nav>
-    
-    <div class="container mx-auto px-4 w-full max-w-sm md:max-w-md lg:max-w-lg z-10 relative">
-        <header class="text-center mb-6">
-            <h1 class="text-4xl font-extrabold text-yellow-300 drop-shadow-lg">Congratulations</h1>
-            <p class="text-lg text-white-200 mt-1">
-                2026 နှစ်သစ် ကံကောင်းခြင်း ငွေသွင်းမလို အခမဲ့ဘောနပ်ကို Channel Join ရရှိသွားသောမန်ဘာများ
-            </p>
-        </header>
-
-        <div id="list-container" class="bg-[#1E4616]/70 rounded-xl shadow-2xl backdrop-blur-sm border border-[#2A6520]/50 overflow-hidden overflow-y-auto h-[70vh] w-full transition duration-500">
-            <table class="min-w-full divide-y divide-[#2A6520]">
-                <thead class="bg-[#1E4616] sticky top-0 z-20 shadow-lg border-b border-yellow-300">
-                    <tr>
-                        <th scope="col" class="player-cell w-1/4 font-extrabold text-sm uppercase tracking-wider text-yellow-300">No</th>
-                        <th scope="col" class="player-cell w-3/4 font-extrabold text-sm uppercase tracking-wider text-yellow-300">Username</th>
-                    </tr>
-                </thead>
-                <tbody id="player-table-body" class="bg-transparent divide-y divide-[#2A6520]"></tbody>
-            </table>
-        </div>
-    </div>
-    
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const tableBody = document.getElementById('player-table-body');
-            const body = document.body;
-            const SNOWFLAKE_COUNT = 100;
-
-            function maskUsername(username) {
-                if (!username) return "";
-                let masked = "";
-                for (let i = 0; i < username.length; i++) {
-                    masked += (i % 2 === 0) ? username[i] : '*';
-                }
-                return masked;
-            }
+            // Shuffle array
+            const shuffled = rawUsernames.sort(() => 0.5 - Math.random());
             
-            function createSnowflake() {
-                const snowflake = document.createElement('div');
-                snowflake.classList.add('snowflake');
-                const size = Math.random() * 3 + 1; 
-                snowflake.style.width = `${size}px`;
-                snowflake.style.height = `${size}px`;
-                snowflake.style.left = `${Math.random() * 100}vw`;
-                snowflake.style.animationDuration = `${Math.random() * 20 + 10}s`;
-                snowflake.style.animationDelay = `-${Math.random() * 15}s`;
-                snowflake.style.top = `${-Math.random() * 100}px`;
-                body.appendChild(snowflake);
-            }
-
-            for (let i = 0; i < SNOWFLAKE_COUNT; i++) { createSnowflake(); }
+            // Limit to exactly 200 or the max available
+            let selected = shuffled.slice(0, 200);
             
-            function generatePlayerList() {
-                const rawUsernames = [
-                    "Michel", "TUntun45678900", "heinhtet1992", "tee007", "uthebest002", "ayechan345578", "Balar8120", "v168vip", "phyomyintmyat6", "JuuJuu", "xghjj", "pyae14666", "HLAHTWE93842", "Yyaaaa", "Fins123", "Csoe26", "Km0949", "million", "Naythu1", "Deee2003", "Zinmar533", "htet220522", "Zin115512", "kyonenaing99", "koye77", "MmmmmO", "Uaikyee", "NayLinn6", "aunmmg", "htwe123456", "Kk2811974", "Htun2002", "mawinwin", "Aksoe1986", "YanZaw", "aungpying", "Konge2002", "kyaswarphyo2004", "ttattatta", "Zar2233", "830884811", "vader", "zinhtet776", "9662383102", "9252744154", "saikyaw123", "ALIENS1994", "NayThura", "sbb7777", "xloxlo", "Thuyakyaw88", "heinhtet8", "MRSNYEINHTAY", "Koye834", "Zinkohtet88888", "heinhtettheinwin", "pyae44nyi", "saihein", "Thankokooo", "Sayargyi8", "Zawwin24", "yuyuwai", "kyaw1457", "9780060646", "mnjk357", "aungminkhant223", "nightmare28", "Phyuphyulay", "Ss222333", "ChitOo0987", "pyaephyo5678", "ZMA564", "thaung1996", "gunn01", "khunminhan", "9957974385", "Tegtueg12313", "Brain5", "jcode", "kokok1234", "Kothet824511", "dar123", "LaMi12", "Thwe565", "aaknu465", "Phophoo11", "shwe548", "WaWa1234", "Hein086008", "zinminthu77", "SaiAung086008", "slotgodgkk9", "Aung34434", "myatkaung888", "mm9685", "Toegyi1234", "kpapa11", "Kyawkyawlwin7778", "sayehtutaung", "mgyatu", "kyawgyinn", "NuamZamCing", "Ayehninphyu", "yzyzyz777", "Min1500", "Konyi000", "mg3260", "kyaw295", "Thu5678", "Arkar2", "beru9999", "TZT901", "Phyolwin45586", "ttmys", "Tuch7979", "saisai00000", "nilathan", "Big502", "zwyemaung", "zaw12123", "yelinkay", "A89197564", "76274", "Hlaiy", "wmhein", "Wot5555", "khtet0", "Htetarkar0909", "kothanwin1737", "KoHtweko", "Mcmin123456", "Kio112233", "pppaa", "Honey125", "nyi086525", "thanoo234", "nyiwin", "Khinchowin", "Nyanlinhtet123", "alay97768", "Aung2467", "hla471", "Waiphyo1111", "Aung44000", "Khint12345", "kyawkyaw7", "aunga12345", "khin279132", "waimarphoo", "zin105836", "ya3398", "Kyawthanhtike123", "kophyo009", "nyizay22222222", "ZarNi2024", "laylay222", "Chitei", "maysupaing279132", "Pwarrmel", "Yekyaw123", "ban552", "Aungsoe5591", "Pyae1479", "Koko9980", "eimon65s", "Nin123", "aungsike", "zzzmmm", "kta1122", "love7777", "koaungzinmoe19", "RoyaLion", "aungzinmoe19", "ssh123", "Aungzin1996", "waimoe789", "zero19", "moemoee1996", "aungzinmoe1997", "BlackDemon", "Pwintphyo77", "aungzinmoe19", "Aungzinmoe25", "aungzinmoe1996", "Kaung0005", "234harry", "koaungzinmoe19", "Rock2325", "Khin19", "tmh99", "nco33", "koaungzinmoe2025", "Gumtpt", "foechan27", "AC2580", "ayesay19", "kzmm333", "soepai1", "icebold", "nanlaydk3", "9683912670", "paytalu19"
-                ];
-
-                // Shuffle array
-                const shuffled = rawUsernames.sort(() => 0.5 - Math.random());
-                
-                // If names are less than 200, we repeat the list or add dummy ones
-                // Here we take up to 200 from the pool
-                let selected = shuffled.slice(0, 200);
-                
-                // Fill to 200 if list is short (Optional)
-                while(selected.length < 200) {
-                    selected.push(rawUsernames[Math.floor(Math.random() * rawUsernames.length)] + "_alt");
-                }
-
-                const fragment = document.createDocumentFragment();
-                selected.forEach((name, index) => {
-                    const row = document.createElement('tr');
-                    row.className = "player-row hover:bg-[#2A6520]/70 transition duration-150";
-                    row.innerHTML = `
-                        <td class="player-cell whitespace-nowrap text-sm font-medium text-yellow-300">${index + 1}</td>
-                        <td class="player-cell whitespace-nowrap text-base font-semibold text-white">${maskUsername(name)}</td>
-                    `;
-                    fragment.appendChild(row);
-                });
-                tableBody.innerHTML = "";
-                tableBody.appendChild(fragment);
+            // If users are less than 200, fill up by repeating to reach exactly 200
+            while(selected.length < 200) {
+                selected.push(rawUsernames[Math.floor(Math.random() * rawUsernames.length)]);
             }
-            generatePlayerList();
-        });
-    </script>
-</body>
-</html>
+
+            const fragment = document.createDocumentFragment();
+            selected.forEach((name, index) => {
+                const row = document.createElement('tr');
+                row.className = "player-row hover:bg-[#2A6520]/70 transition duration-150";
+                row.innerHTML = `
+                    <td class="player-cell whitespace-nowrap text-sm font-medium text-yellow-300">${index + 1}</td>
+                    <td class="player-cell whitespace-nowrap text-base font-semibold text-white">${maskUsername(name)}</td>
+                `;
+                fragment.appendChild(row);
+            });
+            tableBody.innerHTML = "";
+            tableBody.appendChild(fragment);
+        }
+        generatePlayerList();
+    });
+</script>

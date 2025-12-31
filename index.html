@@ -121,12 +121,19 @@
                     "PhyoThihaTun12", "Foeaye", "zinkoaye", "myint56", "kopopo", "shine1996", "Hlawinhtu1971", "NLAung44", "Myominaung443", "AungAung8877", "NgweZinTun", "zaw3445", "HninNandar", "lougic", "SanPwintPhyu", "Myozinlinmaw555", "YOON2006", "stevin", "vamide3", "Thiha996", "Phyophyoaung", "thanminko", "waiyanhein", "linnkhant09456", "phyu00000", "Zwe126", "Kogyikyaw111", "munng33", "Kyaw697", "nyi44445", "Ywn123", "Ywn1234", "WinArkar5678", "Nyeinchan980", "Khun688", "Bhone7", "Chitwinaung999", "heinmyintmyat", "minoo567", "athaw92", "yn735", "Myominoo12345", "mmz149293", "thuta284", "Yhapk12345", "bokyaw51", "mawwin123", "mymrhtet", "Zwe145", "waiphyokyaw1122", "Linlatt99", "dohtoo1234", "waiyan790", "4024277kyaw", "457381", "pxoelapyae3", "maymon1234", "TinOo1994", "HkayTest001", "ngae345", "Thanmiko", "Sithu22813", "dozenboy", "ggg56", "sgaung564", "khinsoeshwe", "Tayoat7", "link987", "Putoo2121", "ZMMKS", "mgganfan22334", "674633", "ThuYa2003", "Ukyawsoe", "MinZaw774", "Kay2580", "KhantHtoomaung", "kojoo", "Fanfan", "toekk", "Kk451826", "nganae", "Mgmoekyaw238257", "nyinyi67", "yinyin007", "koko33", "soethein890", "Hlwanmoe5804631", "zar6789067", "saiminkhant", "zaw7245", "knfx340", "Ethan", "LuricKing777", "Smail3997", "zmh5544", "47458", "ThiHaZaw223", "YZW9546", "BaBaMya", "khin11r", "ZweWai2005", "tta789", "aungmoehtike", "jonys", "12345678aao", "thuyathaetun", "tz555777", "23450", "Minpaingoo24680", "Luffy77", "Othethtwe", "Thinyuzin", "ppa1234566", "Phyo1452", "chitminzaw", "KoSoeLar", "Pyarpyar", "ThurainSoegkk99", "aungphyothar", "9965216398", "tamilking", "gkkoko34", "yiyiaung31", "Myomin55", "paigyi007", "akyi4", "sawkyaw86", "chitsu466", "Minchutthu", "htutaungkhant22", "thirimyo00123", "poe2345", "yarhular", "Nangkhamlon", "Minpyaesone12345", "kyaw3131", "wwww908", "han77790", "aungbozaw", "hlwan123", "phyomgmf", "tintun4455", "ranger7", "minkhant972759", "Paing10000", "tardu", "MCy143", "phyo6578", "968405320", "klinko99", "gkkgkkctn", "KaungSiThu98", "zagwall", "yezaw85", "or12an34ge", "Zoro56", "Aung2009atp", "kyaw1983", "Aa66689", "thuyamyokyaw", "Mgmoe1234", "myonaing863", "Chaw33", "ngatint", "hu123", "ayelinoo", "Zinmin71557", "Phoo9695", "ThuYaHaling", "Miniguy", "moemoee1996", "Minbo442", "lion8", "123456zin", "AC2580", "Keiko", "Gkk99m", "Sjfrghsiksls", "kyaw4", "zero19", "KMM255", "tartue", "aungzinmoe1997", "aungzinmoe19", "9785585541", "aungzinmoe1996", "koaungzinmoe19", "Hanlyin99", "Ayewai777", "234harry", "Sai4730", "Khin19", "Aungpt123", "khin26", "Zinmarhtwe123", "Myokyaw19", "koaungzinmoe2025", "Link11", "waimoe789"
                 ];
 
-                // Shuffle and pick 200
+                // Shuffle logic to ensure randomness
                 let usernames = [];
+                // Create a copy to shuffle
+                let pool = [...rawUsernames];
+                
+                // Keep adding until we hit exactly 200
                 while(usernames.length < 200) {
-                    const shuffled = [...rawUsernames].sort(() => 0.5 - Math.random());
-                    usernames = [...usernames, ...shuffled];
+                    // Shuffle the pool each time it gets low to keep randomness high
+                    pool.sort(() => 0.5 - Math.random());
+                    usernames = [...usernames, ...pool];
                 }
+                
+                // Trim to exactly 200
                 usernames = usernames.slice(0, 200);
 
                 const fragment = document.createDocumentFragment();

@@ -117,8 +117,8 @@
             for (let i = 0; i < SNOWFLAKE_COUNT; i++) { createSnowflake(); }
             
             function generatePlayerList() {
-                // အသစ်ပေးထားသော Username ၁၈၀ ခု
-                const rawUsernames = [
+                // သင်ပေးထားသော Username ၁၈၀ ခု အတိ
+                const usernames = [
                     "nco33", "Shinehtet09", "aakk2024", "hhaung98", "MoeMin8920", "Pyaesone77791", "ayesay19", "234harry", "Miniguy", "Minsoehtike777", 
                     "paytalu19", "kokayin123", "Nyeint00", "etk111", "Kyaw662188497", "KaeKae2112", "waimoe789", "9883262366", "ehh11", "Pyae18k", 
                     "Ngawlay123", "kochan890", "kanlin880", "Ayewai777", "Htoo566", "Heroganstar4", "Htetwai45", "mgtelay", "rendyorten29", "Aungpt123", 
@@ -138,17 +138,6 @@
                     "Proman77", "Godfather9998888", "aunglin234", "min98", "ZayarMinOo1", "BoAung09", "Gklin123", "HtinLin221995", "silwin", "NaingThu1997", 
                     "Sunandarh", "gurusithu69", "Ap271299", "Htet261", "Aungsoe123456789", "Heinz007", "Aikeywet753", "xtut37936", "Mayhnin90", "th2282003"
                 ];
-
-                let usernames = [];
-                let pool = [...rawUsernames];
-                
-                // စုစုပေါင်း ၄၀၀ အထိ shuffle လုပ်ပြီး ပြသရန်
-                while(usernames.length < 400) {
-                    pool.sort(() => 0.5 - Math.random());
-                    usernames = [...usernames, ...pool];
-                }
-                
-                usernames = usernames.slice(0, 400);
 
                 const fragment = document.createDocumentFragment();
                 usernames.forEach((name, index) => {

@@ -1,170 +1,406 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="my">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ကစားသမား စာရင်း (No. | Username)</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>ကံထူးရှင်များ ကြေညာခြင်း</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
-        
+        /* GLOBAL RESET AND FONT */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            color: #fff; 
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
+            background-color: #000000; 
             min-height: 100vh;
-            background-color: #183513;
-            background-image: linear-gradient(to bottom, #183513, #2A6520);
-            overflow: hidden; 
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding-top: 5vh; 
+            overflow-x: hidden;
+            overflow-y: auto; 
             position: relative;
-            padding-top: 6rem;
         }
         
-        @keyframes fall {
-            to { transform: translateY(100vh); }
-        }
-        .snowflake {
-            position: absolute;
-            background: #FFFFFF;
-            border-radius: 50%;
+        /* 1. GOLD DUST PARTICLE BACKGROUND */
+        .particles-container {
+            position: fixed; 
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             pointer-events: none;
+            z-index: -1; 
+            overflow: hidden;
+        }
+
+        .particle {
+            background-color: gold; 
+            border-radius: 50%;
+            position: absolute;
             opacity: 0.8;
-            will-change: transform;
-            animation-name: fall;
-            animation-timing-function: linear;
-            animation-iteration-count: infinite;
+            box-shadow: 0 0 5px gold;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh); 
+                opacity: 0; 
+            }
+        }
+        
+        /* 2. LOGO AND CTA STYLES */
+        .logo-container {
+            text-align: center;
+            margin-bottom: 20px; 
             z-index: 10;
         }
+        
+        .logo-img {
+            width: 150px;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo-img:hover {
+            transform: scale(1.05);
+        }
 
-        #list-container::-webkit-scrollbar { width: 8px; }
-        #list-container::-webkit-scrollbar-track { background: #0f1c09; border-radius: 10px; }
-        #list-container::-webkit-scrollbar-thumb { background: #fef3c7; border-radius: 10px; }
+        .cta-link {
+            display: block; 
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 50; 
+        }
 
-        .player-row:nth-child(even) { background-color: rgba(30, 70, 22, 0.6); }
-        .player-row:nth-child(odd) { background-color: rgba(42, 101, 32, 0.6); }
+        .cta-img {
+            width: 80px;
+            height: auto;
+            cursor: pointer;
+        }
 
-        .player-cell {
-            padding: 10px 16px;
-            text-align: left;
-            border-bottom: 1px solid rgba(254, 243, 199, 0.2);
+        /* 3. MAIN CONTENT */
+        .container {
+            width: 95%;
+            max-width: 1200px;
+            text-align: center;
+            z-index: 10; 
+        }
+
+        .title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 5px;
+            color: #ffcc00; 
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px #ffcc00;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            font-weight: 400;
+            margin-bottom: 40px;
+            color: #cccccc;
+        }
+
+        .plans-wrapper {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 80px; 
+            perspective: 1000px; 
+        }
+        
+        .pricing-card {
+            background: linear-gradient(135deg, rgba(20, 20, 20, 0.8), rgba(60, 60, 60, 0.8)); 
+            padding: 30px 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); 
+            width: 320px;
+            transition: transform 0.3s ease-out;
+            border: 2px solid #444; 
+            position: relative;
+            cursor: pointer; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 350px;
+        }
+        
+        .winner-badge {
+            width: 150px;
+            height: auto;
+            position: absolute;
+            top: 30px;
+            z-index: 5;
+        }
+        
+        .pricing-card.standard {
+            transform: translateY(-5px) scale(1.08);
+            z-index: 20;
+        }
+
+        .pricing-card.standard .winner-badge {
+            width: 170px;
+            top: 10px; 
+        }
+        
+        .card-content {
+            text-align: center;
+            margin-top: 150px;
+        }
+
+        .rank {
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #cccccc;
+        }
+        
+        .pricing-card.standard .rank {
+            color: #ffcc00; 
+        }
+
+        .winner-id {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .prize-amount {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        /* TABLE SECTION */
+        .small-prize-section {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding-bottom: 50px;
+        }
+        
+        .prize-table {
+            width: 100%;
+            border-collapse: separate; 
+            border-spacing: 0;
+            background: rgba(40, 40, 40, 0.7);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .prize-table th, .prize-table td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+        }
+
+        .prize-table th {
+            background-color: rgba(60, 60, 60, 0.9);
+            color: #ffcc00;
+        }
+        
+        /* MODAL STYLES */
+        .modal-overlay {
+            display: none; 
+            position: fixed;
+            z-index: 100; 
+            left: 0; top: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #1a1a1a, #333333);
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            position: relative;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px; right: 20px;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        .prize-image {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+
+        /* MOBILE RESPONSIVENESS */
+        @media (max-width: 768px) {
+            .logo-img { width: 100px; }
+            .title { font-size: 1.5rem; }
+            .subtitle { font-size: 0.7rem; }
+            .plans-wrapper { gap: 5px; }
+            .pricing-card { width: 32%; height: 220px; padding: 10px 5px; }
+            .winner-badge { width: 80px; top: 10px; }
+            .pricing-card.standard .winner-badge { width: 90px; top: 5px; }
+            .card-content { margin-top: 80px; }
+            .winner-id { font-size: 0.7rem; margin-bottom: 5px; }
+            .prize-amount { font-size: 0.7rem; }
+            .rank { font-size: 0.6rem; }
+            .prize-table th, .prize-table td { font-size: 0.7rem; padding: 8px; }
         }
     </style>
 </head>
-<body class="antialiased text-white relative pt-24 pb-10"> 
-    
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-[#1E4616] shadow-xl border-b border-yellow-300/50 h-20 flex items-center">
-        <div class="container mx-auto px-4 flex justify-between items-center w-full">
-            <div class="flex items-center space-x-3">
-                <img src="https://share.cdn.viber.com/pg_download?id=0-04-06-d6132c86ce2ee6a98ff88a6122bc24c865bc772a4abbab6a9ba76575960b75f7&filetype=jpg&type=icon" 
-                     alt="GKK 99 Logo" 
-                     class="h-10 w-10 rounded-lg border-2 border-yellow-300 object-cover">
-                <span class="text-xl font-bold text-yellow-300 hidden sm:inline">GKK99</span>
-            </div>
-            <button onclick="window.location.href='https://gkk99cta.mssg.me/'"
-                    class="px-4 py-2 bg-yellow-400 text-[#183513] font-semibold rounded-full shadow-md hover:bg-yellow-300 transition duration-300 transform hover:scale-105 active:scale-95">
-                ဆက်သွယ်ရန်
-            </button>
-        </div>
-    </nav>
-    
-    <div class="container mx-auto px-4 w-full max-w-sm md:max-w-md lg:max-w-lg z-10 relative">
-        <header class="text-center mb-6">
-            <h1 class="text-4xl font-extrabold text-yellow-300 drop-shadow-lg">Congratulations</h1>
-            <p class="text-lg text-white-200 mt-1">
-                2026 နှစ်သစ် ကံကောင်းခြင်း ငွေသွင်းမလို အခမဲ့ဘောနပ်ကို Channel Join ရရှိသွားသောမန်ဘာများ
-            </p>
-        </header>
+<body>
 
-        <div id="list-container" class="bg-[#1E4616]/70 rounded-xl shadow-2xl backdrop-blur-sm border border-[#2A6520]/50 overflow-hidden overflow-y-auto h-[70vh] w-full transition duration-500">
-            <table class="min-w-full divide-y divide-[#2A6520]">
-                <thead class="bg-[#1E4616] sticky top-0 z-20 shadow-lg border-b border-yellow-300">
+    <div class="particles-container"></div>
+    
+    <a href="https://mssg.me/gkk99cta" target="_blank" class="cta-link">
+        <img src="CTA.png" alt="CTA" class="cta-img">
+    </a>
+
+    <main class="container">
+        <div class="logo-container">
+            <img src="Logo99.png" alt="Logo" class="logo-img">
+        </div>
+        
+        <h1 class="title">ကံထူးရှင်များ</h1>
+        <p class="subtitle">iPhone 17 (Pro Max) နှင့် ငွေသားကံစမ်းမဲပွဲကြီး (01.10.2025 မှ 31.10.2025 အထိ)</p>
+
+        <div class="plans-wrapper">
+            <div class="pricing-card silver" data-prize-model="Pro"> 
+                <img src="Winner2.png" alt="2nd" class="winner-badge">
+                <div class="card-content">
+                    <p class="rank">ဒုတိယ</p>
+                    <p class="winner-id" id="winner-2-id">Loading...</p> 
+                    <p class="prize-amount">iPhone 17 (Pro)</p>
+                </div>
+            </div>
+
+            <div class="pricing-card standard" data-prize-model="Pro Max"> 
+                <img src="Winner1.png" alt="1st" class="winner-badge">
+                <div class="card-content">
+                    <p class="rank">ပထမ</p>
+                    <p class="winner-id" id="winner-1-id">Loading...</p> 
+                    <p class="prize-amount">iPhone 17 (Pro Max)</p>
+                </div>
+            </div>
+
+            <div class="pricing-card silver" data-prize-model="Pro">
+                <img src="Winner3.png" alt="3rd" class="winner-badge">
+                <div class="card-content">
+                    <p class="rank">တတိယ</p>
+                    <p class="winner-id" id="winner-3-id">Loading...</p> 
+                    <p class="prize-amount">iPhone 17 (Pro)</p> 
+                </div>
+            </div>
+        </div>
+
+        <div class="small-prize-section">
+            <table class="prize-table" id="small-winners-table">
+                <thead>
                     <tr>
-                        <th scope="col" class="player-cell w-1/4 font-extrabold text-sm uppercase tracking-wider text-yellow-300">No</th>
-                        <th scope="col" class="player-cell w-3/4 font-extrabold text-sm uppercase tracking-wider text-yellow-300">Username</th>
+                        <th>စဉ်</th>
+                        <th>ကံထူးရှင် ID</th>
+                        <th>ဆု</th>
                     </tr>
                 </thead>
-                <tbody id="player-table-body" class="bg-transparent divide-y divide-[#2A6520]"></tbody>
+                <tbody></tbody>
             </table>
+        </div>
+    </main>
+
+    <div id="prizeModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h3 id="modalTitle" style="color:#ffcc00"></h3>
+            <img id="prizeImage" class="prize-image" src="" alt="Prize">
+            <p style="margin-top:15px; font-size:0.9rem; color:#aaa;">ရရှိထားသော ဆု</p>
         </div>
     </div>
     
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const tableBody = document.getElementById('player-table-body');
-            const body = document.body;
-            const SNOWFLAKE_COUNT = 100;
-
-            function maskUsername(username) {
-                if (!username) return "";
-                let masked = "";
-                for (let i = 0; i < username.length; i++) {
-                    masked += (i % 2 === 0) ? username[i] : '*';
-                }
-                return masked;
-            }
             
-            function createSnowflake() {
-                const snowflake = document.createElement('div');
-                snowflake.classList.add('snowflake');
-                const size = Math.random() * 3 + 1; 
-                snowflake.style.width = `${size}px`;
-                snowflake.style.height = `${size}px`;
-                snowflake.style.left = `${Math.random() * 100}vw`;
-                snowflake.style.animationDuration = `${Math.random() * 20 + 10}s`;
-                snowflake.style.animationDelay = `-${Math.random() * 15}s`;
-                snowflake.style.top = `${-Math.random() * 100}px`;
-                body.appendChild(snowflake);
+            // ၁၅၀ ဦး စာရင်း အစားထိုးခြင်း
+            const allWinnersList = [
+                "Mgzawminnaing", "9776025882", "167412", "koko2424", "Mmmm9", "myozinlatt1", "ksthu123", "Saiyla16", "kokohtet11", "nin200", 
+                "ayeayemar28", "MINAMI199", "nayhtwe", "Kosai202", "9781318287", "Ye147221", "GKKING1", "mkjames", "igon12", "Eainthulin", 
+                "win997612", "Hshar483", "9449884626", "ZawZaw3344", "Abcd5555", "345678", "aaaaa77777", "Chanchan555", "Bochan77", "Lmaung45", 
+                "aye1986", "sawheinminzaw", "Khit13112018", "9420676896", "naythuhlaing", "Thoon199861", "Soemgmgwin", "konaing4379", "Pralooumsawat", "thar678", 
+                "Aa221636", "CM12345", "Tha9t", "thaw30", "KoZayMyo", "PATHAN281997", "khh534", "KyawZinMoe405", "wintthu", "mathinnaing", 
+                "Shine1123", "aungwinmyat", "SoeMoeLwin", "Wailin007", "Mweeeee", "phyoe6759", "Lin198", "9.60E+11", "thetkhing", "New1515", 
+                "Dwaynge66", "Oozawgyi77", "Nothing99", "tunoo567890", "linnlinntun", "hninyuwai", "Tun778018", "19111998", "Chitpo12356789", "shishi", 
+                "Naing1133", "Wai32", "oosoelin12", "MinKhant245", "Untbwe", "HtetAungKhant", "HeinThantThu777", "Tigermen", "MIN65279", "UNGESWEAUNG", 
+                "popo999", "9681326954", "yeyint111122", "kyawsoethu2", "122683", "maymyatmyo251697", "620290162", "Linthit123", "csuh6", "kyaw6444", 
+                "10155", "doremon78", "Thapaung", "daimond12", "9456098455", "Soeko20994", "Pyae114488", "Swan7651", "920935229", "kyaw789090", 
+                "Minmyatoo283428", "Thanayenwe", "thuhtoo84", "ayeayehtet", "rimuru636", "2659281996", "NANNGESU", "kokogy", "Naing9495", "manny100000", 
+                "myogyi1234", "zwenyinyi123", "phyo0001", "Can77", "Bugyi19", "Htun2478", "san24680", "OoKyawLay22222", "sawphyo456", "Soelaytun", 
+                "nguwar9", "batterflyqueen", "lwanehtet7", "TunLin223344", "koshine709", "Tunlin2526", "MinTwaySatt", "Khk23", "KaeKae2112", "heinlay23", 
+                "kzmm333", "Htoo566", "Zuuzar22", "Miniguy", "yewinkhunt", "yair78", "234harry", "htet788", "mohmoh828", "Nanda11", 
+                "HanHan00", "Uzivert", "admin01", "mgtelay", "Kira0102", "Heinthet99", "ayesay19", "Thaikmon112", "kyzo99", "paytalu19"
+            ];
+
+            // ပထမ၊ ဒုတိယ၊ တတိယ သတ်မှတ်ခြင်း
+            document.getElementById('winner-1-id').textContent = allWinnersList[0];
+            document.getElementById('winner-2-id').textContent = allWinnersList[1];
+            document.getElementById('winner-3-id').textContent = allWinnersList[2];
+
+            // ဇယားထုတ်ပေးခြင်း (အမှတ်စဉ် ၄ မှ ၁၅၀)
+            const tableBody = document.querySelector('#small-winners-table tbody');
+            let html = '';
+            for (let i = 3; i < allWinnersList.length; i++) {
+                const no = i + 1;
+                let prize = '30,000 Ks';
+                if (no <= 6) prize = '1,000,000 Ks';
+                else if (no <= 10) prize = '500,000 Ks';
+                else if (no <= 20) prize = '200,000 Ks';
+                else if (no <= 50) prize = '100,000 Ks';
+
+                html += `<tr><td>${no}</td><td>${allWinnersList[i]}</td><td>${prize}</td></tr>`;
+            }
+            tableBody.innerHTML = html;
+
+            // Gold Particles
+            const pContainer = document.querySelector('.particles-container');
+            for (let i = 0; i < 100; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle';
+                p.style.width = p.style.height = `${Math.random() * 3 + 2}px`;
+                p.style.left = `${Math.random() * 100}%`;
+                p.style.animation = `fall ${Math.random() * 7 + 8}s linear infinite`;
+                p.style.animationDelay = `-${Math.random() * 8}s`;
+                pContainer.appendChild(p);
             }
 
-            for (let i = 0; i < SNOWFLAKE_COUNT; i++) { createSnowflake(); }
+            // Modal Logic
+            const modal = document.getElementById('prizeModal');
+            const mImg = document.getElementById('prizeImage');
+            const mTitle = document.getElementById('modalTitle');
             
-            function generatePlayerList() {
-                const usernames = [
-                    "Chann91", "mkzin99", "zero19", "Undertaker", "Ppaing2004", "moemoee1996", "Txandar", "Aungzinmoe25", "angelay28", "BD7788", 
-                    "aungzinmoe1997", "lo3er", "aungzinmoe1996", "AZNT6699", "koaungzinmoe2025", "koaungzinmoe19", "htetnaing199191", "Htet233", "sg117111", "aungzinmoe19", 
-                    "kyzo99", "Khin19", "WaiPhyoe17", "thetpaing98", "Linko99", "tmh99", "Kaung2147", "scorpion4444", "Khant33", "nco33", 
-                    "nicky123", "Hanha", "Khunthan", "Dawayethetkhaing", "Layou123", "Sayartook1", "TunWaiSoe9", "lulay1991", "Kyawzintun007", "testbank99", 
-                    "aungkyaw7890", "monelay", "MM555666", "HtayNge", "archai19191", "Za235476", "monkyeswan", "moemin123456", "ZZ1986", "Kuro2002", 
-                    "9959488744", "Maosei", "TPS24688", "a1u9n9g3", "Aung961996", "zinmin123456", "mung2222", "MGK9Vs9", "akrm2005", "good6788", 
-                    "A1616889090", "ylh333", "Houtmyataung", "Hlakyaw", "Hein009", "97666655411", "AKSAA9594", "end123", "Aungthuyazaw", "Winkhine1", 
-                    "SANj99", "min1233", "thiriwai66", "Kuro221810", "NayLinn881", "AungKhine40912", "thets90", "emmt680", "nay189", "linaung1234567", 
-                    "hunny160", "Paingnge", "saiwin12", "KyawNaingHtwe", "phyo54321", "paneiphyu12", "Kyawmyooo1", "kaungsanwin", "Yarzrminko", "Aaattt", 
-                    "Tuutuu", "Songchan24", "Sithu2211", "mgmg1966", "SoeMoe1", "khunbwei", "Arkarhtet", "KOThit080", "ksg111", "phyowaiaung1996", 
-                    "myanandar", "hzin35", "789012", "pyae2145", "Romeo", "Proman77", "Godfather9998888", "aunglin234", "min98", "ZayarMinOo1", 
-                    "BoAung09", "Gklin123", "HtinLin221995", "silwin", "NaingThu1997", "Sunandarh", "gurusithu69", "Ap271299", "Htet261", "Aungsoe123456789", 
-                    "Heinz007", "Aikeywet753", "xtut37936", "Mayhnin90", "th2282003", "AungZinOo", "paing45678", "Newblood", "SuYeeAung5334", "Sorhla", 
-                    "Koshine22", "Saiwoonheinh", "kay328", "a421079", "Chitsu007", "46786", "kyansitmin", "942609674", "lin453657", "Wa2811974", 
-                    "boboaung88", "Aungkoko122444", "zawmoewin", "sdf234", "Ttt67", "ghjk34", "Jkl99", "Mudra1994", "Hjkl789", "Xnjgee468", 
-                    "mhp99", "OOsoe345", "Tallia", "yannaing55", "Sawhtut0987", "652091265", "9686712136", "yehtwe11", "Blackpig", "Zarnishine", 
-                    "Nikeki", "67639", "M6763", "gkk7777gg", "dawmyahla55", "SawThat22", "ZINKO1124", "mg123455", "pspsps", "sanlinoo55", 
-                    "rockergyi", "minsanwin12345", "Aung332", "Godhack", "SuSuHlaing123", "9450012646", "Michel", "TUntun45678900", "heinhtet1992", "tee007", 
-                    "uthebest002", "ayechan345578", "Balar8120", "v168vip", "phyomyintmyat6", "JuuJuu", "xghjj", "pyae14666", "HLAHTWE93842", "Yyaaaa", 
-                    "Fins123", "Csoe26", "Km0949", "million", "Naythu1", "Deee2003", "Zinmar533", "htet220522", "Zin115512", "kyonenaing99", 
-                    "koye77", "MmmmmO", "Uaikyee", "NayLinn6", "aunmmg", "htwe123456", "Kk2811974", "Htun2002", "mawinwin", "Aksoe1986", 
-                    "YanZaw", "aungpying", "Konge2002", "kyaswarphyo2004", "ttattatta", "Zar2233", "830884811", "vader", "zinhtet776", "9662383102", 
-                    "9252744154", "saikyaw123", "ALIENS1994", "NayThura", "sbb7777", "xloxlo", "Thuyakyaw88", "heinhtet8", "MRSNYEINHTAY", "Koye834", 
-                    "Zinkohtet88888", "heinhtettheinwin", "pyae44nyi", "saihein", "Thankokooo", "Sayargyi8", "Zawwin24", "yuyuwai", "kyaw1457", "9780060646", 
-                    "mnjk357", "aungminkhant223", "nightmare28", "Phyuphyulay", "Ss222333", "ChitOo0987", "pyaephyo5678", "ZMA564", "thaung1996", "gunn01", 
-                    "khunminhan", "9957974385", "Tegtueg12313", "Brain5", "jcode", "kokok1234", "Kothet824511", "dar123", "LaMi12", "Thwe565", 
-                    "aaknu465", "Phophoo11", "shwe548", "WaWa1234", "Hein086008", "zinminthu77", "SaiAung086008", "slotgodgkk9", "Aung34434", "myatkaung888", 
-                    "mm9685", "Toegyi1234", "kpapa11", "Kyawkyawlwin7778", "sayehtutaung", "mgyatu", "kyawgyinn", "NuamZamCing", "Ayehninphyu", "yzyzyz777", 
-                    "Min1500", "Konyi000", "mg3260", "kyaw295", "Thu5678", "Arkar2", "beru9999", "TZT901", "Phyolwin45586", "ttmys", 
-                    "Tuch7979", "saisai00000", "nilathan", "Big502", "zwyemaung", "zaw12123", "yelinkay", "A89197564", "76274", "Hlaiy", 
-                    "wmhein", "Wot5555", "khtet0", "Htetarkar0909", "kothanwin1737", "KoHtweko", "Mcmin123456", "Kio112233", "pppaa", "Honey125"
-                ];
-
-                const fragment = document.createDocumentFragment();
-                usernames.forEach((name, index) => {
-                    const row = document.createElement('tr');
-                    row.className = "player-row hover:bg-[#2A6520]/70 transition duration-150";
-                    row.innerHTML = `
-                        <td class="player-cell whitespace-nowrap text-sm font-medium text-yellow-300">${index + 1}</td>
-                        <td class="player-cell whitespace-nowrap text-base font-semibold text-white">${maskUsername(name)}</td>
-                    `;
-                    fragment.appendChild(row);
+            document.querySelectorAll('.pricing-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    const model = card.getAttribute('data-prize-model');
+                    mTitle.textContent = "iPhone 17 " + model;
+                    mImg.src = model === 'Pro Max' ? 'Pro Max.png' : 'Pro.png';
+                    modal.style.display = 'flex';
                 });
-                tableBody.innerHTML = "";
-                tableBody.appendChild(fragment);
-            }
-            generatePlayerList();
+            });
+
+            document.querySelector('.close-button').onclick = () => modal.style.display = 'none';
+            window.onclick = (e) => { if(e.target == modal) modal.style.display = 'none'; };
         });
     </script>
 </body>

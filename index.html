@@ -54,13 +54,13 @@
     <nav class="fixed top-0 left-0 right-0 z-50 bg-[#590000] shadow-xl border-b border-yellow-300/50 h-20 flex items-center">
         <div class="container mx-auto px-4 flex justify-between items-center w-full">
             <div class="flex items-center space-x-3">
-                <img src="https://i0.wp.com/gkk99.net/wp-content/uploads/2025/05/photo_2024-05-05_18-26-46.jpg?fit=640%2C640&ssl=1" 
+                <img src="https://i0.wp.com/gkk777.net/wp-content/uploads/2025/05/photo_2024-05-05_18-26-46.jpg?fit=640%2C640&ssl=1" 
                      alt="GKK 99 Logo" 
                      class="h-10 w-10 rounded-lg border-2 border-yellow-300 object-cover"
                      onerror="this.src='https://placehold.co/40x40/ffd700/400000?text=L';">
-                <span class="text-xl font-bold text-yellow-300 hidden sm:inline">GKK99</span>
+                <span class="text-xl font-bold text-yellow-300 hidden sm:inline">GKK777</span>
             </div>
-            <button onclick="window.location.href='https://gkk99cta.mssg.me/'"
+            <button onclick="window.location.href='https://gkk777cta.mssg.me/'"
                     class="px-4 py-2 bg-yellow-400 text-[#400000] font-semibold rounded-full shadow-md hover:bg-yellow-300 transition duration-300 transform hover:scale-105 active:scale-95">
                 ဆက်သွယ်ရန်
             </button>
@@ -124,23 +124,23 @@
 
             for (let i = 0; i < SNOWFLAKE_COUNT; i++) { createSnowflake(); }
             
+            // သင်ပို့ထားသော Username ၁၅၀ ခု
             const playerNames = [
                 "Mgzawminnaing", "9776025882", "167412", "koko2424", "Mmmm9", "myozinlatt1", "ksthu123", "Saiyla16", "kokohtet11", "nin200", "ayeayemar28", "MINAMI199", "nayhtwe", "Kosai202", "9781318287", "Ye147221", "GKKING1", "mkjames", "igon12", "Eainthulin", "win997612", "Hshar483", "9449884626", "ZawZaw3344", "Abcd5555", "345678", "aaaaa77777", "Chanchan555", "Bochan77", "Lmaung45", "aye1986", "sawheinminzaw", "Khit13112018", "9420676896", "naythuhlaing", "Thoon199861", "Soemgmgwin", "konaing4379", "Pralooumsawat", "thar678", "Aa221636", "CM12345", "Tha9t", "thaw30", "KoZayMyo", "PATHAN281997", "khh534", "KyawZinMoe405", "wintthu", "mathinnaing", "Shine1123", "aungwinmyat", "SoeMoeLwin", "Wailin007", "Mweeeee", "phyoe6759", "Lin198", "9.60E+11", "thetkhing", "New1515", "Dwaynge66", "Oozawgyi77", "Nothing99", "tunoo567890", "linnlinntun", "hninyuwai", "Tun778018", "19111998", "Chitpo12356789", "shishi", "Naing1133", "Wai32", "oosoelin12", "MinKhant245", "Untbwe", "HtetAungKhant", "HeinThantThu777", "Tigermen", "MIN65279", "UNGESWEAUNG", "popo999", "9681326954", "yeyint111122", "kyawsoethu2", "122683", "maymyatmyo251697", "620290162", "Linthit123", "csuh6", "kyaw6444", "10155", "doremon78", "Thapaung", "daimond12", "9456098455", "Soeko20994", "Pyae114488", "Swan7651", "920935229", "kyaw789090", "Minmyatoo283428", "Thanayenwe", "thuhtoo84", "ayeayehtet", "rimuru636", "2659281996", "NANNGESU", "kokogy", "Naing9495", "manny100000", "myogyi1234", "zwenyinyi123", "phyo0001", "Can77", "Bugyi19", "Htun2478", "san24680", "OoKyawLay22222", "sawphyo456", "Soelaytun", "nguwar9", "batterflyqueen", "lwanehtet7", "TunLin223344", "koshine709", "Tunlin2526", "MinTwaySatt", "Khk23", "KaeKae2112", "heinlay23", "kzmm333", "Htoo566", "Zuuzar22", "Miniguy", "yewinkhunt", "yair78", "234harry", "htet788", "mohmoh828", "Nanda11", "HanHan00", "Uzivert", "admin01", "mgtelay", "Kira0102", "Heinthet99", "ayesay19", "Thaikmon112", "kyzo99", "paytalu19"
             ];
 
             function generatePlayerList() {
                 tableBody.innerHTML = "";
-                // Generate 300 rows based on provided usernames
-                for (let i = 0; i < 300; i++) {
-                    const num = playerNames[i % playerNames.length];
+                // အယောက် ၁၅၀ ကို အစဉ်လိုက် ထုတ်ပေးပါမည်
+                playerNames.forEach((name, index) => {
                     const row = document.createElement("tr");
                     row.className = "player-row";
                     row.innerHTML = `
-                        <td class="player-cell text-yellow-300 font-bold">${i + 1}</td>
-                        <td class="player-cell text-white font-medium">${maskUsername(num)}</td>
+                        <td class="player-cell text-yellow-300 font-bold">${index + 1}</td>
+                        <td class="player-cell text-white font-medium">${maskUsername(name)}</td>
                     `;
                     tableBody.appendChild(row);
-                }
+                });
             }
 
             generatePlayerList();
@@ -148,4 +148,3 @@
     </script>
 </body>
 </html>
-
